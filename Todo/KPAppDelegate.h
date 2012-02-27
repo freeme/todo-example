@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
-@interface KPAppDelegate : UIResponder <UIApplicationDelegate>
+@interface KPAppDelegate : UIResponder <UIApplicationDelegate> {
+    
+    UINavigationController *_navController;
+    RootViewController *_rootViewController;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -16,7 +21,10 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
-- (void)saveContext;
+- (BOOL)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
++ (KPAppDelegate*) shareDelegate;
+- (BOOL) quickAddTaskWithText:(NSString*)text;
+- (BOOL) quickAddProjectWithName:(NSString*)name;
 @end

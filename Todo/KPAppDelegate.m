@@ -7,6 +7,8 @@
 //
 
 #import "KPAppDelegate.h"
+#import "Task.h"
+#import "Project.h"
 
 @implementation KPAppDelegate
 
@@ -24,11 +26,22 @@
     [super dealloc];
 }
 
++ (KPAppDelegate*) shareDelegate {
+    
+    KPAppDelegate *appDelegate = (KPAppDelegate*)[UIApplication sharedApplication].delegate;
+    return appDelegate;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    _rootViewController = [[RootViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    _navController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
+    
+    [self.window addSubview:_navController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -39,6 +52,7 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    [self saveContext];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -69,7 +83,7 @@
     [self saveContext];
 }
 
-- (void)saveContext
+- (BOOL)saveContext
 {
     NSError *error = nil;
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
@@ -83,9 +97,10 @@
              abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
              */
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+            return NO;
         } 
     }
+    return YES;
 }
 
 #pragma mark - Core Data stack
@@ -137,7 +152,7 @@
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Todo.sqlite"];
-    
+    NSLog(@"storeURL = %@",storeURL);
     NSError *error = nil;
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
@@ -181,5 +196,30 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+- (BOOL) quickAddTaskWithText:(NSString*)text {
+    Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
+    newTask.text = text;
+    newTask.createDate = [NSDate date];
+    
+    return [self saveContext];
+}
+
+- (BOOL) quickAddProjectWithName:(NSString*)name {
+    Project *newProject = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:self.managedObjectContext];
+    newProject.name = name;
+    newProject.createDate = [NSDate date];
+    
+    return [self saveContext];
+}
+
+
+
+
+
+
+
+
+
 
 @end
