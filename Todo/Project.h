@@ -2,7 +2,7 @@
 //  Project.h
 //  Todo
 //
-//  Created by he baochen on 12-2-26.
+//  Created by He baochen on 12-2-28.
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
@@ -14,22 +14,22 @@
 @interface Project : NSManagedObject
 
 @property (nonatomic, retain) NSDate * createDate;
+@property (nonatomic, retain) NSDate * dueDate;
 @property (nonatomic, retain) NSNumber * isFinish;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSDate * dueDate;
-@property (nonatomic, retain) NSOrderedSet *alltask;
+@property (nonatomic, retain) NSOrderedSet *tasks;
 @end
 
 @interface Project (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(Task *)value inAlltaskAtIndex:(NSUInteger)idx;
-- (void)removeObjectFromAlltaskAtIndex:(NSUInteger)idx;
-- (void)insertAlltask:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
-- (void)removeAlltaskAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInAlltaskAtIndex:(NSUInteger)idx withObject:(Task *)value;
-- (void)replaceAlltaskAtIndexes:(NSIndexSet *)indexes withAlltask:(NSArray *)values;
-- (void)addAlltaskObject:(Task *)value;
-- (void)removeAlltaskObject:(Task *)value;
-- (void)addAlltask:(NSOrderedSet *)values;
-- (void)removeAlltask:(NSOrderedSet *)values;
+- (void)insertObject:(Task *)value inTasksAtIndex:(NSUInteger)idx;
+- (void)removeObjectFromTasksAtIndex:(NSUInteger)idx;
+- (void)insertTasks:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
+- (void)removeTasksAtIndexes:(NSIndexSet *)indexes;
+- (void)replaceObjectInTasksAtIndex:(NSUInteger)idx withObject:(Task *)value;
+- (void)replaceTasksAtIndexes:(NSIndexSet *)indexes withTasks:(NSArray *)values;
+- (void)addTasksObject:(Task *)value;
+- (void)removeTasksObject:(Task *)value;
+- (void)addTasks:(NSOrderedSet *)values;
+- (void)removeTasks:(NSOrderedSet *)values;
 @end

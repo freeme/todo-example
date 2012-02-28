@@ -9,6 +9,7 @@
 #import "KPAppDelegate.h"
 #import "Task.h"
 #import "Project.h"
+#import "FetchRequestFactory.h"
 
 @implementation KPAppDelegate
 
@@ -43,6 +44,8 @@
     
     [self.window addSubview:_navController.view];
     [self.window makeKeyAndVisible];
+  [FetchRequestFactory todayTaskFetchRequest];
+    
     return YES;
 }
 

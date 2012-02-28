@@ -9,6 +9,7 @@
 #import "ProjectListViewController.h"
 #import "KPAppDelegate.h"
 #import "Project.h"
+#import "TaskListViewControllerEx.h"
 
 @interface ProjectListViewController(Private) 
 
@@ -31,7 +32,7 @@
     [_inputField release];
     [_entityName release];
     [_request release];
-    [_listArray release];
+    [_projectArray release];
     [_coverView release];
     [_inputContainer release];
     [super dealloc];
@@ -93,7 +94,7 @@
     
     NSError *error = nil;
     NSArray *array = [context executeFetchRequest:_request error:&error];
-    _listArray = [[NSMutableArray alloc] initWithArray:array];
+    _projectArray = [[NSMutableArray alloc] initWithArray:array];
     [_tableView reloadData];
 }
 
@@ -101,10 +102,10 @@
     KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
     NSArray *array = [context executeFetchRequest:_request error:NULL];
-    if (_listArray) {
-        [_listArray release];
+    if (_projectArray) {
+        [_projectArray release];
     }
-    _listArray = [[NSMutableArray alloc] initWithArray:array];
+    _projectArray = [[NSMutableArray alloc] initWithArray:array];
     [_tableView reloadData];
 }
 
@@ -132,7 +133,10 @@
 }
 
 - (void) quickAdd {
-    [self saveProject];
+    BOOL result = [self saveProject];
+    if (result) {
+        _inputField.text = @"";
+    }
 }
 
 - (BOOL) saveProject {
@@ -202,7 +206,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_listArray count];
+    return [_projectArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -214,7 +218,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    Project *project = (Project*)[_listArray objectAtIndex:indexPath.row];
+    Project *project = (Project*)[_projectArray objectAtIndex:indexPath.row];
     // Configure the cell...
     cell.textLabel.text = project.name;
     return cell;
@@ -264,13 +268,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    
+     TaskListViewControllerEx *viewController = [[TaskListViewControllerEx alloc] init];
+    viewController.project = [_projectArray objectAtIndex:indexPath.row];
+     [self.navigationController pushViewController:viewController animated:YES];
+     [viewController release];
+     
 }
 
 @end

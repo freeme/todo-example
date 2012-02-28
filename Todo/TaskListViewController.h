@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseListViewController.h"
+#import "FetchListViewController.h"
 
-@interface TaskListViewController : BaseListViewController {
+@interface TaskListViewController : FetchListViewController {
 
 }
 

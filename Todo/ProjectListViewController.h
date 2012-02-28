@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseListViewController.h"
+#import "FetchListViewController.h"
 
 @interface ProjectListViewController : UIViewController<UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate> {
     UITableView *_tableView;
     NSString *_entityName;
     NSFetchRequest *_request;
-    NSMutableArray *_listArray;
+    NSMutableArray *_projectArray;
     UIView *_inputContainer;
     UITextField *_inputField;
     UIControl *_coverView;
