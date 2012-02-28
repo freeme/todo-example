@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Project.h"
+#import "EditTaskViewController.h"
 
-@interface TaskListViewControllerEx : UITableViewController {
+@interface TaskListViewControllerEx : UITableViewController<EditTaskDelegate> {
     Project *_project;
 }
 

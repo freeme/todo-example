@@ -224,28 +224,38 @@
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+
+        //从DB中删除
+        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+        NSManagedObjectContext *context = appDelegate.managedObjectContext;
+		[context deleteObject:[_projectArray objectAtIndex:indexPath.row]];
+        [appDelegate saveContext];
+        //从内存中删除
+        [_projectArray removeObjectAtIndex:indexPath.row];
+        //从表格中删除Cell
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -270,10 +280,10 @@
     // Navigation logic may go here. Create and push another view controller.
     
      TaskListViewControllerEx *viewController = [[TaskListViewControllerEx alloc] init];
-    viewController.project = [_projectArray objectAtIndex:indexPath.row];
+     viewController.project = [_projectArray objectAtIndex:indexPath.row];
      [self.navigationController pushViewController:viewController animated:YES];
      [viewController release];
-     
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

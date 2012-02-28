@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3F11D70214FC9CAA0036199E /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F11D70114FC9CAA0036199E /* Project.m */; };
 		3F11D70514FCA5450036199E /* FetchRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F11D70414FCA5450036199E /* FetchRequestFactory.m */; };
+		3F1AB7E514FD1C4B00FE4489 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AB7E314FD1C4B00FE4489 /* EditTaskViewController.m */; };
+		3F1AB7E914FD329400FE4489 /* SelectProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AB7E814FD329400FE4489 /* SelectProjectViewController.m */; };
 		3F28088814FBEE00003293F7 /* TaskListViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */; };
 		3F28089D14FBF651003293F7 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F28089C14FBF651003293F7 /* Task.m */; };
 		3F47C16E14FA67BC008ADFD6 /* ProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F47C16D14FA67BC008ADFD6 /* ProjectListViewController.m */; };
@@ -46,6 +48,10 @@
 		3F11D70114FC9CAA0036199E /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 		3F11D70314FCA5450036199E /* FetchRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchRequestFactory.h; sourceTree = "<group>"; };
 		3F11D70414FCA5450036199E /* FetchRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchRequestFactory.m; sourceTree = "<group>"; };
+		3F1AB7E214FD1C4B00FE4489 /* EditTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTaskViewController.h; sourceTree = "<group>"; };
+		3F1AB7E314FD1C4B00FE4489 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
+		3F1AB7E714FD329400FE4489 /* SelectProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectProjectViewController.h; sourceTree = "<group>"; };
+		3F1AB7E814FD329400FE4489 /* SelectProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectProjectViewController.m; sourceTree = "<group>"; };
 		3F28088614FBEDFF003293F7 /* TaskListViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewControllerEx.h; sourceTree = "<group>"; };
 		3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewControllerEx.m; sourceTree = "<group>"; };
 		3F28089B14FBF651003293F7 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
@@ -158,6 +164,10 @@
 				3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */,
 				3F11D70314FCA5450036199E /* FetchRequestFactory.h */,
 				3F11D70414FCA5450036199E /* FetchRequestFactory.m */,
+				3F1AB7E214FD1C4B00FE4489 /* EditTaskViewController.h */,
+				3F1AB7E314FD1C4B00FE4489 /* EditTaskViewController.m */,
+				3F1AB7E714FD329400FE4489 /* SelectProjectViewController.h */,
+				3F1AB7E814FD329400FE4489 /* SelectProjectViewController.m */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -308,6 +318,8 @@
 				3F28089D14FBF651003293F7 /* Task.m in Sources */,
 				3F11D70214FC9CAA0036199E /* Project.m in Sources */,
 				3F11D70514FCA5450036199E /* FetchRequestFactory.m in Sources */,
+				3F1AB7E514FD1C4B00FE4489 /* EditTaskViewController.m in Sources */,
+				3F1AB7E914FD329400FE4489 /* SelectProjectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

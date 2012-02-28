@@ -10,16 +10,7 @@
 #import "KPAppDelegate.h"
 
 @implementation FetchListViewController
-@synthesize sortDescriptors = _sortDescriptors;
-@synthesize predicate = _predicate;
-
-- (id)initWithEntityName:(NSString*)entityName {
-    self = [super init];
-    if (self) {
-        _entityName = [entityName copy];
-    }
-    return self;
-}
+@synthesize fetchRequest = _fetchRequest;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,8 +23,6 @@
 
 - (void) dealloc {
     [_fetchController release];
-  [_sortDescriptors release];
-  [_predicate release];
     [super dealloc];
 }
 
@@ -55,43 +44,19 @@
 
     KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:[NSEntityDescription entityForName:_entityName inManagedObjectContext:context]];
-    [fetchRequest setSortDescriptors:_sortDescriptors];
-
-  [fetchRequest setPredicate:_predicate];
   
     _fetchController = [[NSFetchedResultsController alloc]
-                        initWithFetchRequest:fetchRequest
+                        initWithFetchRequest:_fetchRequest
                         managedObjectContext:context
                         sectionNameKeyPath:nil
                         cacheName:@""];
-    [fetchRequest release];
-    
+    _fetchController.delegate = self;
     NSError *error;
     BOOL success = [_fetchController performFetch:&error];
 }
 
 - (void) showAddView {
     
-}
-
-- (NSPredicate*) prdeicate {
-  
-  NSPredicate *predicate = [NSPredicate
-                            predicateWithFormat:@"belongList == nil"];
-  return predicate;
-}
-
-
-- (NSArray*) sortDescriptors {
-    NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
-    NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"createDate" ascending:YES];
-    
-    NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects:sortDescriptor1,sortDescriptor2, nil] autorelease];
-    [sortDescriptor1 release];
-    [sortDescriptor2 release];
-    return sortDescriptors;
 }
 
 - (void)viewDidUnload
@@ -157,57 +122,64 @@
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSManagedObjectContext *context = [_fetchController managedObjectContext];
+		[context deleteObject:[_fetchController objectAtIndexPath:indexPath]];
+        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+        [appDelegate saveContext];
     }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+
+    
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    UITableView *tableView = self.tableView;
+    
+	switch(type) {
+			
+		case NSFetchedResultsChangeInsert:
+			[tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeDelete:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+			
+		case NSFetchedResultsChangeUpdate:
+
+			break;
+			
+		case NSFetchedResultsChangeMove:
+			[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+			break;
+	}
+}
+
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
 }
 
 @end

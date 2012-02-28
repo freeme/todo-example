@@ -8,16 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FetchListViewController : UITableViewController {
+@interface FetchListViewController : UITableViewController <NSFetchedResultsControllerDelegate>{
     NSFetchedResultsController *_fetchController;
-    NSString *_entityName;
-    NSArray *_sortDescriptors;
-    NSPredicate *_predicate;
+    NSFetchRequest *_fetchRequest;
 }
 
 - (id)initWithEntityName:(NSString*)entityName;
 
-@property(nonatomic, retain) NSArray *sortDescriptors;
-@property(nonatomic, retain) NSPredicate *predicate;
+@property(nonatomic, retain) NSFetchRequest *fetchRequest;
 
 @end
