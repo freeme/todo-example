@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F11D70214FC9CAA0036199E /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F11D70114FC9CAA0036199E /* Project.m */; };
+		3F11D70514FCA5450036199E /* FetchRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F11D70414FCA5450036199E /* FetchRequestFactory.m */; };
+		3F28088814FBEE00003293F7 /* TaskListViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */; };
+		3F28089D14FBF651003293F7 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F28089C14FBF651003293F7 /* Task.m */; };
+		3F47C16E14FA67BC008ADFD6 /* ProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F47C16D14FA67BC008ADFD6 /* ProjectListViewController.m */; };
+		3F47C17C14FA7C8C008ADFD6 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F47C17B14FA7C8C008ADFD6 /* TaskListViewController.m */; };
+		3F47C18314FA8686008ADFD6 /* FetchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F47C18214FA8686008ADFD6 /* FetchListViewController.m */; };
 		3F4D872F14FA611800C5A2F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4D872E14FA611800C5A2F5 /* UIKit.framework */; };
 		3F4D873114FA611800C5A2F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4D873014FA611800C5A2F5 /* Foundation.framework */; };
 		3F4D873314FA611800C5A2F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4D873214FA611800C5A2F5 /* CoreGraphics.framework */; };
@@ -21,6 +28,7 @@
 		3F4D874F14FA611800C5A2F5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F4D873414FA611800C5A2F5 /* CoreData.framework */; };
 		3F4D875714FA611800C5A2F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F4D875514FA611800C5A2F5 /* InfoPlist.strings */; };
 		3F4D875A14FA611800C5A2F5 /* TodoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4D875914FA611800C5A2F5 /* TodoTests.m */; };
+		3F4D876514FA65D300C5A2F5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4D876414FA65D300C5A2F5 /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,24 +42,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F11D70014FC9CAA0036199E /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
+		3F11D70114FC9CAA0036199E /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
+		3F11D70314FCA5450036199E /* FetchRequestFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchRequestFactory.h; sourceTree = "<group>"; };
+		3F11D70414FCA5450036199E /* FetchRequestFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchRequestFactory.m; sourceTree = "<group>"; };
+		3F28088614FBEDFF003293F7 /* TaskListViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewControllerEx.h; sourceTree = "<group>"; };
+		3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewControllerEx.m; sourceTree = "<group>"; };
+		3F28089B14FBF651003293F7 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
+		3F28089C14FBF651003293F7 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
+		3F47C16C14FA67BC008ADFD6 /* ProjectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectListViewController.h; sourceTree = "<group>"; };
+		3F47C16D14FA67BC008ADFD6 /* ProjectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectListViewController.m; sourceTree = "<group>"; };
+		3F47C17A14FA7C8C008ADFD6 /* TaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
+		3F47C17B14FA7C8C008ADFD6 /* TaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
+		3F47C18114FA8686008ADFD6 /* FetchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchListViewController.h; sourceTree = "<group>"; };
+		3F47C18214FA8686008ADFD6 /* FetchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchListViewController.m; sourceTree = "<group>"; };
 		3F4D872A14FA611800C5A2F5 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4D872E14FA611800C5A2F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3F4D873014FA611800C5A2F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F4D873214FA611800C5A2F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3F4D873414FA611800C5A2F5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		3F4D873814FA611800C5A2F5 /* Todo-Info.plist */ = {isa = PBXFileReference; path = "Todo-Info.plist"; sourceTree = "<group>"; };
+		3F4D873814FA611800C5A2F5 /* Todo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Todo-Info.plist"; sourceTree = "<group>"; };
 		3F4D873A14FA611800C5A2F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3F4D873C14FA611800C5A2F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3F4D873E14FA611800C5A2F5 /* Todo-Prefix.pch */ = {isa = PBXFileReference; path = "Todo-Prefix.pch"; sourceTree = "<group>"; };
-		3F4D873F14FA611800C5A2F5 /* KPAppDelegate.h */ = {isa = PBXFileReference; path = KPAppDelegate.h; sourceTree = "<group>"; };
+		3F4D873E14FA611800C5A2F5 /* Todo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Todo-Prefix.pch"; sourceTree = "<group>"; };
+		3F4D873F14FA611800C5A2F5 /* KPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPAppDelegate.h; sourceTree = "<group>"; };
 		3F4D874014FA611800C5A2F5 /* KPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPAppDelegate.m; sourceTree = "<group>"; };
 		3F4D874314FA611800C5A2F5 /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
 		3F4D874A14FA611800C5A2F5 /* TodoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F4D874B14FA611800C5A2F5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		3F4D875414FA611800C5A2F5 /* TodoTests-Info.plist */ = {isa = PBXFileReference; path = "TodoTests-Info.plist"; sourceTree = "<group>"; };
+		3F4D875414FA611800C5A2F5 /* TodoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TodoTests-Info.plist"; sourceTree = "<group>"; };
 		3F4D875614FA611800C5A2F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3F4D875814FA611800C5A2F5 /* TodoTests.h */ = {isa = PBXFileReference; path = TodoTests.h; sourceTree = "<group>"; };
+		3F4D875814FA611800C5A2F5 /* TodoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoTests.h; sourceTree = "<group>"; };
 		3F4D875914FA611800C5A2F5 /* TodoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoTests.m; sourceTree = "<group>"; };
+		3F4D876314FA65D300C5A2F5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		3F4D876414FA65D300C5A2F5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +107,8 @@
 		3F4D871F14FA611700C5A2F5 = {
 			isa = PBXGroup;
 			children = (
+				3F28089B14FBF651003293F7 /* Task.h */,
+				3F28089C14FBF651003293F7 /* Task.m */,
 				3F4D873614FA611800C5A2F5 /* Todo */,
 				3F4D875214FA611800C5A2F5 /* TodoTests */,
 				3F4D872D14FA611800C5A2F5 /* Frameworks */,
@@ -117,7 +143,21 @@
 				3F4D873F14FA611800C5A2F5 /* KPAppDelegate.h */,
 				3F4D874014FA611800C5A2F5 /* KPAppDelegate.m */,
 				3F4D874214FA611800C5A2F5 /* Todo.xcdatamodeld */,
+				3F11D70014FC9CAA0036199E /* Project.h */,
+				3F11D70114FC9CAA0036199E /* Project.m */,
 				3F4D873714FA611800C5A2F5 /* Supporting Files */,
+				3F4D876314FA65D300C5A2F5 /* RootViewController.h */,
+				3F4D876414FA65D300C5A2F5 /* RootViewController.m */,
+				3F47C16C14FA67BC008ADFD6 /* ProjectListViewController.h */,
+				3F47C16D14FA67BC008ADFD6 /* ProjectListViewController.m */,
+				3F47C17A14FA7C8C008ADFD6 /* TaskListViewController.h */,
+				3F47C17B14FA7C8C008ADFD6 /* TaskListViewController.m */,
+				3F47C18114FA8686008ADFD6 /* FetchListViewController.h */,
+				3F47C18214FA8686008ADFD6 /* FetchListViewController.m */,
+				3F28088614FBEDFF003293F7 /* TaskListViewControllerEx.h */,
+				3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */,
+				3F11D70314FCA5450036199E /* FetchRequestFactory.h */,
+				3F11D70414FCA5450036199E /* FetchRequestFactory.m */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -260,6 +300,14 @@
 				3F4D873D14FA611800C5A2F5 /* main.m in Sources */,
 				3F4D874114FA611800C5A2F5 /* KPAppDelegate.m in Sources */,
 				3F4D874414FA611800C5A2F5 /* Todo.xcdatamodeld in Sources */,
+				3F4D876514FA65D300C5A2F5 /* RootViewController.m in Sources */,
+				3F47C16E14FA67BC008ADFD6 /* ProjectListViewController.m in Sources */,
+				3F47C17C14FA7C8C008ADFD6 /* TaskListViewController.m in Sources */,
+				3F47C18314FA8686008ADFD6 /* FetchListViewController.m in Sources */,
+				3F28088814FBEE00003293F7 /* TaskListViewControllerEx.m in Sources */,
+				3F28089D14FBF651003293F7 /* Task.m in Sources */,
+				3F11D70214FC9CAA0036199E /* Project.m in Sources */,
+				3F11D70514FCA5450036199E /* FetchRequestFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +469,7 @@
 				3F4D875F14FA611800C5A2F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F4D876014FA611800C5A2F5 /* Build configuration list for PBXNativeTarget "TodoTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +478,7 @@
 				3F4D876214FA611800C5A2F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
