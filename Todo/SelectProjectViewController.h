@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProjectListViewController.h"
+#import "FetchListViewController.h"
 #import "Project.h"
 
 @class Project;
@@ -17,7 +17,7 @@
 
 @end
 
-@interface SelectProjectViewController : ProjectListViewController {
+@interface SelectProjectViewController : FetchListViewController {
     Project *_currentProject;
     id<SelectProjectDelegate> _delegate;
 }

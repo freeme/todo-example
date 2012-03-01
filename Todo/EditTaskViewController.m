@@ -38,8 +38,10 @@
         _editingTask = [editingTask retain];
         if (_editingTask) {
             _editingMode = YES;
+            self.title = @"编辑任务";
         } else {
             _editingMode = NO;
+            self.title = @"新建任务";
         }
     }
 }
@@ -93,8 +95,7 @@
           /*
            方法二
            [_project addTasksObject:newTask];
-           在使用NSOrderedSet时，有个BUG，而NSSet时没有。
-           　下面代码不好用，可能是个系统BUG
+           在指定project.tasks的属性为ordered时，系统生成的代码有个BUG，而非ordered时没有。
            解决方案，自己实现这个方法
            - (void)addTasksObject:(Task *)value {
            NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.tasks];

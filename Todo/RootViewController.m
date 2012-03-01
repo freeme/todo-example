@@ -65,7 +65,7 @@
   // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"新建任务" style:UIBarButtonItemStyleBordered target:self action:@selector(showAddTaskView)] autorelease];
   
-  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"新建清单" style:UIBarButtonItemStyleBordered target:self action:@selector(showAddListView)] autorelease];
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"新建项目" style:UIBarButtonItemStyleBordered target:self action:@selector(showAddListView)] autorelease];
   
   _inputField = [[UITextField alloc] initWithFrame:CGRectMake(6, 10, 240, 22)];
   _inputField.font = [UIFont systemFontOfSize:18];
