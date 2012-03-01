@@ -10,14 +10,17 @@
 #import "KPAppDelegate.h"
 
 @interface FetchRequestFactory (private)
-
-+ (NSFetchRequest*) defaultTaskFetchRequest;
++ (NSFetchRequest*) defaultFetchRequest;
 + (NSArray*) defaultSortDescriptors;
++ (NSFetchRequest*) defaultTaskFetchRequest;
++ (NSFetchRequest*) defaultProjectFetchRequest;
+
 
 @end
 
 @implementation FetchRequestFactory
 
+//默认的排序规则是，按到期时间近的，和创建时间早的
 + (NSArray*) defaultSortDescriptors {
   NSSortDescriptor *sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"dueDate" ascending:YES];
   NSSortDescriptor *sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"createDate" ascending:YES];
@@ -28,14 +31,31 @@
   return sortDescriptors;
 }
 
-+ (NSFetchRequest*) defaultTaskFetchRequest {
++ (NSFetchRequest*) defaultFetchRequest {
   NSFetchRequest *request = nil;
-  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-  NSManagedObjectContext *context = appDelegate.managedObjectContext;
   request = [[NSFetchRequest alloc] init];
-  [request setEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:context]];
   NSArray* sortDescriptors = [self defaultSortDescriptors];
   [request setSortDescriptors:sortDescriptors];
+  return request;
+}
+
+
++ (NSFetchRequest*) defaultTaskFetchRequest {
+  NSFetchRequest *request = [self defaultFetchRequest];
+  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+  [request setEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext]];
+  return request;
+}
+
++ (NSFetchRequest*) defaultProjectFetchRequest {
+  NSFetchRequest *request = [self defaultFetchRequest];
+  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+  [request setEntity:[NSEntityDescription entityForName:@"Project" inManagedObjectContext:appDelegate.managedObjectContext]];
+  NSMutableArray* sortDescriptors = [NSMutableArray arrayWithArray:[request sortDescriptors]];
+  NSSortDescriptor *sortDescriptor0 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+  //project 按先照名称进行排序
+  [sortDescriptors insertObject:sortDescriptor0 atIndex:0];
+  [sortDescriptor0 release];
   return request;
 }
 
@@ -43,7 +63,7 @@
   NSFetchRequest *request = [self defaultTaskFetchRequest];
   // 不在任何项目中的任务
   NSPredicate *predicate = [NSPredicate
-                            predicateWithFormat:@"belongList == nil"];
+                            predicateWithFormat:@"project == nil"];
   [request setPredicate:predicate];
   return request;
 }
@@ -61,7 +81,9 @@
   
   //今天晚上12:00，所有小于这个时间都放在今天显示
   NSDate *todayEnd = [calendar dateFromComponents:todayComponents];
-
+  NSPredicate *predicate = [NSPredicate
+                            predicateWithFormat:@"(dueDate!=nil) AND (dueDate<%@)",todayEnd];
+  [request setPredicate:predicate];
   return request;
 }
 

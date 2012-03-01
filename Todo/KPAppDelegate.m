@@ -202,9 +202,9 @@
 
 - (BOOL) quickAddTaskWithText:(NSString*)text {
     Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-    newTask.text = text;
+    newTask.title = text;
     newTask.createDate = [NSDate date];
-    
+    newTask.dueDate = [NSDate date];
     return [self saveContext];
 }
 

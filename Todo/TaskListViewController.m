@@ -85,14 +85,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     id <NSFetchedResultsSectionInfo> sectionInfo = [[_fetchController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
@@ -106,9 +105,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    NSManagedObject *managedObject = [_fetchController objectAtIndexPath:indexPath];
+    Task *task = (Task*)[_fetchController objectAtIndexPath:indexPath];
     // Configure the cell...
-    cell.textLabel.text = [managedObject valueForKey:@"text"];
+    cell.textLabel.text = task.title;
     return cell;
 }
 

@@ -27,7 +27,7 @@
     id<EditTaskDelegate> _delegate;
 }
 
-@property (nonatomic) id<EditTaskDelegate> delegate;
+@property (nonatomic, assign) id<EditTaskDelegate> delegate;
 @property (nonatomic, retain) Project *createdInProject;
 @property (nonatomic, retain) Task *editingTask;
 

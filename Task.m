@@ -16,7 +16,7 @@
 @dynamic dueDate;
 @dynamic isFinish;
 @dynamic note;
-@dynamic text;
-@dynamic belongList;
+@dynamic title;
+@dynamic project;
 
 @end

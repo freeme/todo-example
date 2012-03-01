@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EditTaskViewController.h"
 
 typedef enum {
     SectionTypeInput = 0,
@@ -18,7 +19,7 @@ typedef enum {
 } SectionType;
 
 
-@interface RootViewController : UITableViewController<UITextFieldDelegate> {
+@interface RootViewController : UITableViewController<UITextFieldDelegate, EditTaskDelegate> {
     UITextField *_inputField;
 }
 

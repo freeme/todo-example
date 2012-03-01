@@ -29,13 +29,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    UITableViewCell *cell = [super cellForRowAtIndexPath:indexPath];
+  UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     Project *project = (Project*)[_projectArray objectAtIndex:indexPath.row];
     if (project.objectID == _currentProject.objectID) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     return cell;
 }
@@ -52,7 +52,7 @@
     if ([_delegate respondsToSelector:@selector(didSelectedProject:)]) {
         [_delegate didSelectedProject:project];
     }
-    
+  [self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -13,8 +13,6 @@
     NSFetchRequest *_fetchRequest;
 }
 
-- (id)initWithEntityName:(NSString*)entityName;
-
 @property(nonatomic, retain) NSFetchRequest *fetchRequest;
 
 @end

@@ -82,14 +82,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [_project.tasks count];
 }
@@ -104,7 +102,7 @@
     }
 
     Task *task = [_project.tasks objectAtIndex:indexPath.row];
-    cell.textLabel.text = task.text;
+    cell.textLabel.text = task.title;
     
     return cell;
 }

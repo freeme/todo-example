@@ -49,10 +49,10 @@
                         initWithFetchRequest:_fetchRequest
                         managedObjectContext:context
                         sectionNameKeyPath:nil
-                        cacheName:@""];
+                        cacheName:nil];
     _fetchController.delegate = self;
     NSError *error;
-    BOOL success = [_fetchController performFetch:&error];
+    [_fetchController performFetch:&error];
 }
 
 - (void) showAddView {
@@ -96,14 +96,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return 0;
 }

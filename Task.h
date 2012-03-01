@@ -17,7 +17,7 @@
 @property (nonatomic, retain) NSDate * dueDate;
 @property (nonatomic, retain) NSNumber * isFinish;
 @property (nonatomic, retain) NSString * note;
-@property (nonatomic, retain) NSString * text;
-@property (nonatomic, retain) Project *belongList;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) Project *project;
 
 @end

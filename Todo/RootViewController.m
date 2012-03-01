@@ -11,6 +11,7 @@
 #import "TaskListViewController.h"
 #import "ProjectListViewController.h"
 #import "FetchRequestFactory.h"
+#import "EditTaskViewController.h"
 
 @interface RootViewController(Private) 
 
@@ -89,12 +90,19 @@
 }
 
 - (void) showAddTaskView {
-    
+
+  EditTaskViewController * viewController = [[EditTaskViewController alloc] initWithStyle:UITableViewStyleGrouped];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+  viewController.delegate = self;
+  [self presentModalViewController:navController animated:YES];  
+  [viewController release];
+  [navController release];
 }
 
 - (void) showAddListView {
-    ProjectListViewController *listViewController = [[ProjectListViewController alloc] initWithEntityName:@"Project"];
+    ProjectListViewController *listViewController = [[ProjectListViewController alloc] init];
     listViewController.title = @"项目";
+    listViewController.fetchRequest = [FetchRequestFactory defaultProjectFetchRequest];
     [self.navigationController pushViewController:listViewController animated:YES];
     [listViewController showAddView];
     [listViewController release];
@@ -105,14 +113,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return SectionTypeCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     NSInteger rowCount = 1;
     return rowCount;
@@ -170,10 +178,17 @@
         [self.navigationController pushViewController:listViewController animated:YES];
         [listViewController release];
     } else if(indexPath.section == SectionTypeProject) {
-        ProjectListViewController *listViewController = [[ProjectListViewController alloc] initWithEntityName:@"Project"];
+        ProjectListViewController *listViewController = [[ProjectListViewController alloc] init];
         listViewController.title = @"项目";
+      listViewController.fetchRequest = [FetchRequestFactory defaultProjectFetchRequest];
         [self.navigationController pushViewController:listViewController animated:YES];
         [listViewController release];
+    } else if(indexPath.section == SectionTypeTime) {
+      TaskListViewController *listViewController = [[TaskListViewController alloc] init];
+      listViewController.title = @"今天";
+      listViewController.fetchRequest = [FetchRequestFactory todayTaskFetchRequest];
+      [self.navigationController pushViewController:listViewController animated:YES];
+      [listViewController release];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -186,6 +201,13 @@
         [_inputField resignFirstResponder];
     }
      
+}
+
+#pragma mark - Edit Task delegate
+
+- (void) didFinishEditTask:(Task*)task {
+  
+  [self.tableView reloadData];
 }
 
 @end

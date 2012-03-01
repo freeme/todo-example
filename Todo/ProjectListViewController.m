@@ -19,19 +19,12 @@
 @end
 
 @implementation ProjectListViewController
+@synthesize fetchRequest = _fetchRequest;
 
-- (id)initWithEntityName:(NSString*)entityName {
-    self = [super init];
-    if (self) {
-        _entityName = [entityName copy];
-    }
-    return self;
-}
 
 - (void) dealloc {
     [_inputField release];
-    [_entityName release];
-    [_request release];
+    [_fetchRequest release];
     [_projectArray release];
     [_coverView release];
     [_inputContainer release];
@@ -82,18 +75,9 @@
     
     KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:_entityName inManagedObjectContext:context];
-    _request = [[NSFetchRequest alloc] init];
-    [_request setEntity:entityDescription];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-                                        initWithKey:@"name" ascending:YES];
-    [_request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    [sortDescriptor release];
     
     NSError *error = nil;
-    NSArray *array = [context executeFetchRequest:_request error:&error];
+    NSArray *array = [context executeFetchRequest:_fetchRequest error:&error];
     _projectArray = [[NSMutableArray alloc] initWithArray:array];
     [_tableView reloadData];
 }
@@ -101,7 +85,7 @@
 - (void) reloadList {
     KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    NSArray *array = [context executeFetchRequest:_request error:NULL];
+    NSArray *array = [context executeFetchRequest:_fetchRequest error:NULL];
     if (_projectArray) {
         [_projectArray release];
     }
@@ -197,14 +181,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return [_projectArray count];
 }

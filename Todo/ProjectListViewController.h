@@ -11,15 +11,15 @@
 
 @interface ProjectListViewController : UIViewController<UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate> {
     UITableView *_tableView;
-    NSString *_entityName;
-    NSFetchRequest *_request;
+    NSFetchRequest *_fetchRequest;
     NSMutableArray *_projectArray;
     UIView *_inputContainer;
     UITextField *_inputField;
     UIControl *_coverView;
 }
 
-- (id)initWithEntityName:(NSString*)entityName;
+@property(nonatomic, retain) NSFetchRequest *fetchRequest;
+
 - (void) showAddView;
 
 @end

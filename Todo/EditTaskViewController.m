@@ -8,6 +8,7 @@
 
 #import "EditTaskViewController.h"
 #import "KPAppDelegate.h"
+#import "FetchRequestFactory.h"
 
 @implementation EditTaskViewController
 @synthesize editingTask = _editingTask;
@@ -84,9 +85,9 @@
         } else {
             tempTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
         }
-        tempTask.text = _taskTextField.text;
+        tempTask.title = _taskTextField.text;
         tempTask.createDate = [NSDate date];
-        tempTask.belongList = _createdInProject;
+        tempTask.project = _createdInProject;
         [appDelegate saveContext];
         if ([_delegate respondsToSelector:@selector(didFinishEditTask:)]) {
             [_delegate didFinishEditTask:tempTask];
@@ -133,14 +134,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return 4;
 }
@@ -169,12 +170,12 @@
     // 编辑模式
     if (_editingMode) {
         if (indexPath.row == 0) {
-            _taskTextField.text = _editingTask.text;
+            _taskTextField.text = _editingTask.title;
         } else if (indexPath.row == 1) {
             cell.textLabel.text = @"结束时间";
         } else if (indexPath.row == 2) {
             cell.textLabel.text = @"添加到项目";
-            cell.detailTextLabel.text = _editingTask.belongList.name;
+            cell.detailTextLabel.text = _editingTask.project.name;
         } else {
             _taskNoteField.text = _editingTask.note;
         }
@@ -198,10 +199,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3) {
+    if (indexPath.row == 2) {
         SelectProjectViewController *viewController = [[SelectProjectViewController alloc] init];
         viewController.curProject = _createdInProject;
         viewController.delegate = self;
+        viewController.fetchRequest = [FetchRequestFactory defaultProjectFetchRequest];
         [self.navigationController pushViewController:viewController animated:YES];
         [viewController release];
     }
@@ -209,7 +211,12 @@
 }
 #pragma mark - Select project delegate
 - (void) didSelectedProject:(Project*)project {
+  if (_editingMode) {
+    _editingTask.project = project;
+  } else {
     self.createdInProject = project;
+  }
+    
     [self.tableView reloadData];
 }
 

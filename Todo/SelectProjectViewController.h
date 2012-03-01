@@ -22,7 +22,7 @@
     id<SelectProjectDelegate> _delegate;
 }
 
-@property(nonatomic) id<SelectProjectDelegate> delegate;
+@property(nonatomic, assign) id<SelectProjectDelegate> delegate;
 @property(nonatomic, retain) Project *curProject;
 
 @end
