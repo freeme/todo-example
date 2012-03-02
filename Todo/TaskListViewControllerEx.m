@@ -47,34 +47,7 @@
     
     [viewController release];
     [navController release];
-    /*
-    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-//    BOOL result = [appDelegate quickAddTaskWithText:@"testTask"];
-    
-    Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
-    newTask.text = @"Test Task";
-    newTask.createDate = [NSDate date];
 
-    //方法一
-    newTask.belongList = _project;
-  
-
-     */
-    //方法二
- 
-    /*
-     在使用NSOrderedSet时，有个BUG，而NSSet时没有。
-    　下面代码不好用，可能是个系统BUG
-     解决方案，自己实现这个方法
-     - (void)addTasksObject:(Task *)value {
-     NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.tasks];
-     [tempSet addObject:value];
-     self.tasks = tempSet;
-     }
-     */
-    //[_project addTasksObject:newTask]; 
-    //[self.tableView reloadData];
-    
 }
 
 

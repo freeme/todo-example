@@ -81,6 +81,12 @@
     [_tableView reloadData];
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  [_tableView reloadData];
+}
+
 - (void) reloadList {
     KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
@@ -147,14 +153,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
     return [_projectArray count];
 }

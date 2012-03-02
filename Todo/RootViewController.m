@@ -87,7 +87,7 @@
   }
 }
 
-- (void) quickAdd {
+- (void) quickAddAction {
   [self saveTask];
 }
 
@@ -105,11 +105,17 @@
 }
 
 - (BOOL) saveTask {
-  if ([_inputField.text length] >0) {
+  if ([_inputField.text length] > 0) {
     KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-    BOOL result = [appDelegate quickAddTaskWithText:_inputField.text];
+    Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
+    newTask.title = _inputField.text;
+    newTask.createDate = [NSDate date];
+    newTask.dueDate = [NSDate date];
+    
+    BOOL result = [appDelegate saveContext];
     if (result) {
       _inputField.text = @"";
+      [self.tableView reloadData];
       return result;
     }
   } 
@@ -163,7 +169,7 @@
     
     if (indexPath.section == SectionTypeInput) {
       UIButton *quickAdd = [UIButton buttonWithType:UIButtonTypeContactAdd];
-      [quickAdd addTarget:self action:@selector(quickAdd) forControlEvents:UIControlEventTouchUpInside];
+      [quickAdd addTarget:self action:@selector(quickAddAction) forControlEvents:UIControlEventTouchUpInside];
       quickAdd.center = CGPointMake(280, 22);
       [cell.contentView addSubview:quickAdd];
       [cell.contentView addSubview:_inputField];

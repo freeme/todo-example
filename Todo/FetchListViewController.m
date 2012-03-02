@@ -22,8 +22,9 @@
 }
 
 - (void) dealloc {
-    [_fetchController release];
-    [super dealloc];
+  [_fetchController release];
+  [_fetchRequest release];
+  [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,8 +52,11 @@
                         sectionNameKeyPath:nil
                         cacheName:nil];
     _fetchController.delegate = self;
-    NSError *error;
-    [_fetchController performFetch:&error];
+  NSError *error = nil;
+    BOOL result = [_fetchController performFetch:&error];
+  if (!result) {
+    NSLog(@"error = %@", error);
+  }
 }
 
 - (void) showAddView {
@@ -137,7 +141,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [_fetchController managedObjectContext];
-		[context deleteObject:[_fetchController objectAtIndexPath:indexPath]];
+        [context deleteObject:[_fetchController objectAtIndexPath:indexPath]];
         KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
         [appDelegate saveContext];
     }   
