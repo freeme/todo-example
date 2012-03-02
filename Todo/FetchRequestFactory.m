@@ -55,6 +55,7 @@
   NSSortDescriptor *sortDescriptor0 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
   //project 按先照名称进行排序
   [sortDescriptors insertObject:sortDescriptor0 atIndex:0];
+  [request setSortDescriptors:sortDescriptors];
   [sortDescriptor0 release];
   return request;
 }
@@ -63,7 +64,7 @@
   NSFetchRequest *request = [self defaultTaskFetchRequest];
   // 不在任何项目中的任务
   NSPredicate *predicate = [NSPredicate
-                            predicateWithFormat:@"project == nil"];
+                            predicateWithFormat:@"(project == nil) AND (isFinish == NO)"];
   [request setPredicate:predicate];
   return request;
 }
@@ -82,7 +83,16 @@
   //今天晚上12:00，所有小于这个时间都放在今天显示
   NSDate *todayEnd = [calendar dateFromComponents:todayComponents];
   NSPredicate *predicate = [NSPredicate
-                            predicateWithFormat:@"(dueDate!=nil) AND (dueDate<%@)",todayEnd];
+                            predicateWithFormat:@"(isFinish == NO) AND (dueDate!=nil) AND (dueDate<%@)",todayEnd];
+  [request setPredicate:predicate];
+  return request;
+}
+
++ (NSFetchRequest*) finishTaskFetchRequest {
+  NSFetchRequest *request = [self defaultTaskFetchRequest];
+  // 不在任何项目中的任务
+  NSPredicate *predicate = [NSPredicate
+                            predicateWithFormat:@"isFinish == YES"];
   [request setPredicate:predicate];
   return request;
 }

@@ -99,12 +99,37 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        UIImage *img = [UIImage imageNamed:@"CheckboxActive-N.png"];
+        cell.imageView.image = img;
+        UIControl *markControl = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
+        [markControl addTarget:self action:@selector(markAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.imageView.userInteractionEnabled = YES;
+        [cell.imageView addSubview:markControl];
+        [markControl release];
     }
-
     Task *task = [_project.tasks objectAtIndex:indexPath.row];
     cell.textLabel.text = task.title;
-    
+  if ([task.isFinish boolValue]) {
+    cell.imageView.image = [UIImage imageNamed:@"CheckboxDone-N.png"];
+  } else {
+    cell.imageView.image = [UIImage imageNamed:@"CheckboxActive-N.png"];
+  }
     return cell;
+}
+
+- (void) markAction:(id)sender {
+  UIControl *control = (UIControl*)sender;
+  //推荐的解决方案
+  CGPoint originInTable = [control convertPoint:control.frame.origin toView:self.tableView];
+  NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:originInTable];
+  UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+  Task *task = [_project.tasks objectAtIndex:indexPath.row];
+  task.isFinish = [NSNumber numberWithBool:![task.isFinish boolValue]];
+  if ([task.isFinish boolValue]) {
+    cell.imageView.image = [UIImage imageNamed:@"CheckboxDone-N.png"];
+  } else {
+    cell.imageView.image = [UIImage imageNamed:@"CheckboxActive-N.png"];
+  }
 }
 
 

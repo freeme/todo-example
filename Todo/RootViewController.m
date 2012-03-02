@@ -170,44 +170,56 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == SectionTypeInbox) {
-        
-        TaskListViewController *listViewController = [[TaskListViewController alloc] init];
-        listViewController.title = @"整理箱";
-        listViewController.fetchRequest = [FetchRequestFactory inboxTaskFetchRequest];
-        [self.navigationController pushViewController:listViewController animated:YES];
-        [listViewController release];
-    } else if(indexPath.section == SectionTypeProject) {
-        ProjectListViewController *listViewController = [[ProjectListViewController alloc] init];
-        listViewController.title = @"项目";
-      listViewController.fetchRequest = [FetchRequestFactory defaultProjectFetchRequest];
-        [self.navigationController pushViewController:listViewController animated:YES];
-        [listViewController release];
-    } else if(indexPath.section == SectionTypeTime) {
-      TaskListViewController *listViewController = [[TaskListViewController alloc] init];
-      listViewController.title = @"今天";
-      listViewController.fetchRequest = [FetchRequestFactory todayTaskFetchRequest];
-      [self.navigationController pushViewController:listViewController animated:YES];
-      [listViewController release];
+  switch (indexPath.section) {
+      NSFetchRequest *fetchRequest = nil;
+      NSString *title = nil;
+    case SectionTypeInbox:
+      title = @"整理箱";
+      fetchRequest = [FetchRequestFactory inboxTaskFetchRequest];;
+    case SectionTypeTime:
+      title = @"今天";
+      fetchRequest = [FetchRequestFactory todayTaskFetchRequest];
+    case SectionTypeFinish:
+      title = @"已完成";
+      fetchRequest = [FetchRequestFactory finishTaskFetchRequest];
+      {
+      TaskListViewController *viewController = [[TaskListViewController alloc] init];
+      viewController.title = title;
+      viewController.fetchRequest = fetchRequest;
+      [self.navigationController pushViewController:viewController animated:YES];
+      [viewController release];
+      }
+      break;
+    case SectionTypeProject:{
+      title = @"项目";
+      fetchRequest = [FetchRequestFactory defaultProjectFetchRequest];
+      ProjectListViewController *viewController = [[ProjectListViewController alloc] init];
+      viewController.title = title;
+      viewController.fetchRequest = fetchRequest;
+      [self.navigationController pushViewController:viewController animated:YES];
+      [viewController release];
     }
-    
+      break;
+    default:
+      break;
+  }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-//界面滚动，键盘自动消失
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat moveY = fabs(scrollView.contentOffset.y);
-    if (moveY > 20) {
-        [_inputField resignFirstResponder];
-    }
-     
-}
 
 #pragma mark - Edit Task delegate
 
 - (void) didFinishEditTask:(Task*)task {
   
   [self.tableView reloadData];
+}
+
+//界面滚动，键盘自动消失
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  CGFloat moveY = fabs(scrollView.contentOffset.y);
+  if (moveY > 20) {
+    [_inputField resignFirstResponder];
+  }
 }
 
 @end

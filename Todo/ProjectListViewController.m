@@ -44,8 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.view = [[[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-    _tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 480-20-44)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
@@ -108,6 +107,7 @@
 - (void) closeAddView {
     self.title = @"项目";
     _inputField.text = @"";
+    [_inputField resignFirstResponder];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.2];
     _inputContainer.frame = CGRectMake(0, -44, 320, 44);
@@ -139,7 +139,6 @@
     BOOL result = [self saveProject];
     if (result) {
         [self closeAddView];
-        [_inputField resignFirstResponder];
     }
     return result;
 }

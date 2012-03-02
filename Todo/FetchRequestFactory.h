@@ -13,5 +13,5 @@
 + (NSFetchRequest*) inboxTaskFetchRequest;
 + (NSFetchRequest*) todayTaskFetchRequest;
 + (NSFetchRequest*) defaultProjectFetchRequest;
-
++ (NSFetchRequest*) finishTaskFetchRequest;
 @end
