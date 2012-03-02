@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "EditTaskViewController.h"
+#import "FetchRequestFactory.h"
 
 typedef enum {
     SectionTypeInput = 0,
@@ -21,6 +22,11 @@ typedef enum {
 
 @interface RootViewController : UITableViewController<UITextFieldDelegate, EditTaskDelegate> {
     UITextField *_inputField;
+  NSFetchRequest *_inboxFetchRequest;
+  NSFetchRequest *_todayFetchRequest;
+  NSFetchRequest *_projectFetchRequest;
+  NSFetchRequest *_finishFetchRequest;
+  BOOL _needReloadData;
 }
 
 @end

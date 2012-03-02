@@ -143,39 +143,6 @@
     return result;
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -198,12 +165,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     Project *project = (Project*)[_projectArray objectAtIndex:indexPath.row];
     // Configure the cell...
     cell.textLabel.text = project.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [project.tasks count]];
     return cell;
 }
 
@@ -226,7 +194,7 @@
         //从DB中删除
         KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
         NSManagedObjectContext *context = appDelegate.managedObjectContext;
-		[context deleteObject:[_projectArray objectAtIndex:indexPath.row]];
+        [context deleteObject:[_projectArray objectAtIndex:indexPath.row]];
         [appDelegate saveContext];
         //从内存中删除
         [_projectArray removeObjectAtIndex:indexPath.row];

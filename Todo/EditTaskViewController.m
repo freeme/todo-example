@@ -84,10 +84,11 @@
             tempTask = _editingTask;
         } else {
             tempTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
+            tempTask.project = _createdInProject;
         }
         tempTask.title = _taskTextField.text;
         tempTask.createDate = [NSDate date];
-        tempTask.project = _createdInProject;
+        
         [appDelegate saveContext];
         if ([_delegate respondsToSelector:@selector(didFinishEditTask:)]) {
             [_delegate didFinishEditTask:tempTask];
@@ -217,7 +218,7 @@
     self.createdInProject = project;
   }
     
-    [self.tableView reloadData];
+  [self.tableView reloadData];
 }
 
 @end

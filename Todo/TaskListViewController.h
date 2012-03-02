@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FetchListViewController.h"
+#import "EditTaskViewController.h"
 
-@interface TaskListViewController : FetchListViewController {
+@interface TaskListViewController : FetchListViewController<EditTaskDelegate> {
 
 }
 
