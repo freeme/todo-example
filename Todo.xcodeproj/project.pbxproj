@@ -10,7 +10,6 @@
 		3F11D70514FCA5450036199E /* FetchRequestFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F11D70414FCA5450036199E /* FetchRequestFactory.m */; };
 		3F1AB7E514FD1C4B00FE4489 /* EditTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AB7E314FD1C4B00FE4489 /* EditTaskViewController.m */; };
 		3F1AB7E914FD329400FE4489 /* SelectProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1AB7E814FD329400FE4489 /* SelectProjectViewController.m */; };
-		3F25730814FFC81500C2E4C0 /* bugs.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F25730714FFC81500C2E4C0 /* bugs.txt */; };
 		3F28088814FBEE00003293F7 /* TaskListViewControllerEx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */; };
 		3F47C16E14FA67BC008ADFD6 /* ProjectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F47C16D14FA67BC008ADFD6 /* ProjectListViewController.m */; };
 		3F47C17C14FA7C8C008ADFD6 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F47C17B14FA7C8C008ADFD6 /* TaskListViewController.m */; };
@@ -54,7 +53,6 @@
 		3F1AB7E314FD1C4B00FE4489 /* EditTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTaskViewController.m; sourceTree = "<group>"; };
 		3F1AB7E714FD329400FE4489 /* SelectProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectProjectViewController.h; sourceTree = "<group>"; };
 		3F1AB7E814FD329400FE4489 /* SelectProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectProjectViewController.m; sourceTree = "<group>"; };
-		3F25730714FFC81500C2E4C0 /* bugs.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bugs.txt; sourceTree = "<group>"; };
 		3F28088614FBEDFF003293F7 /* TaskListViewControllerEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewControllerEx.h; sourceTree = "<group>"; };
 		3F28088714FBEDFF003293F7 /* TaskListViewControllerEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewControllerEx.m; sourceTree = "<group>"; };
 		3F47C16C14FA67BC008ADFD6 /* ProjectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectListViewController.h; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 		3F4D871F14FA611700C5A2F5 = {
 			isa = PBXGroup;
 			children = (
-				3F25730714FFC81500C2E4C0 /* bugs.txt */,
 				3F4F200514FFAD2700055230 /* Featurelist.txt */,
 				3F4D873614FA611800C5A2F5 /* Todo */,
 				3F4D875214FA611800C5A2F5 /* TodoTests */,
@@ -304,7 +301,6 @@
 				3FBD155514FF64FF00E14DE6 /* CheckboxActive-N.png in Resources */,
 				3FBD155614FF64FF00E14DE6 /* CheckboxDone-N.png in Resources */,
 				3F4F200614FFAD2700055230 /* Featurelist.txt in Resources */,
-				3F25730814FFC81500C2E4C0 /* bugs.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

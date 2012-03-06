@@ -200,14 +200,6 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (BOOL) quickAddTaskWithText:(NSString*)text {
-    Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.managedObjectContext];
-    newTask.title = text;
-    newTask.createDate = [NSDate date];
-    newTask.dueDate = [NSDate date];
-    return [self saveContext];
-}
-
 - (BOOL) quickAddProjectWithName:(NSString*)name {
     Project *newProject = [NSEntityDescription insertNewObjectForEntityForName:@"Project" inManagedObjectContext:self.managedObjectContext];
     newProject.name = name;

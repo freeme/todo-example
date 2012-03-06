@@ -110,7 +110,7 @@
     Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
     newTask.title = _inputField.text;
     newTask.createDate = [NSDate date];
-    newTask.dueDate = [NSDate date];
+    newTask.dueDate = [NSDate date]; //简单实现一下
     
     BOOL result = [appDelegate saveContext];
     if (result) {

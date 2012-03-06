@@ -25,6 +25,5 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 + (KPAppDelegate*) shareDelegate;
-- (BOOL) quickAddTaskWithText:(NSString*)text;
 - (BOOL) quickAddProjectWithName:(NSString*)name;
 @end
