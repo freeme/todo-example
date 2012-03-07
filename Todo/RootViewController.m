@@ -184,6 +184,7 @@
       cell.textLabel.text = @"整理箱";
       NSInteger count = [appDelegate.managedObjectContext countForFetchRequest:_inboxFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
+      cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
       break;        
     case SectionTypeTime:{

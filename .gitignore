@@ -1,3 +1,4 @@
 # 工程用户数据
-/Todo.xcodeproj/xcuserdata/*.*
-/Todo.xcodeproj/project.xcworkspace/*.*
+/Todo.xcodeproj/xcuserdata/*
+
+/Todo.xcodeproj/project.xcworkspace/xcuserdata/*

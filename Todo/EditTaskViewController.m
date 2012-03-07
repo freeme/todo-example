@@ -51,7 +51,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    if (_editingMode) {
+        self.title = @"编辑任务";
+    } else {
+        self.title = @"新建任务";
+    }
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = YES;
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveTask)] autorelease];
