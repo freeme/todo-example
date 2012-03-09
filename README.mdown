@@ -1,0 +1,73 @@
+本项目的目的
+
+Version 0.1
+1. 展示常见iPhone应用的基本框架
+2. 展示应用常见操作的基本实现方法，如列表显示，详情展示，添加，修改，删除等操作和对应的页面跳转
+3. 重点展示CoreData的使用
+3.1  新建，修改，删除，查找数据
+新建任务时，为了方便演示，默认设置Task的dueDate为当前创建的时间
+
+3.2  其中查找使用了两种方法
+    第一种，使用NSFetchResultController,具体实现请参考FetchListViewController及其子类TaskListViewController和SelectProjectViewController的使用。
+    第二种，直接使用NSFetchRequest, 具体实现请参考ProjectListViewController, 同样是显示一个NSManagedObject对象列表，Task列表和Project的列表分别使用了不同的方式，纯粹用于演示目的。显然第一种用法更高效，在数据量很大的时候，NSFetchResultController的内部实现会带来很好的性能，避免不必要的开销，同时代码量也更少。
+
+3.3  演示一对多关系
+一个Project包含多个Task，project有一个叫tasks的Relationship,
+Arranged属性为Ordered, 大家可以尝试一下去掉这个选项会有什么变化
+Delete Rule为Deny(拒绝)，表示在删除Project时，关联的tasks如果有值，则拒绝删除
+官方文档中关于Delete Rule的说明
+Deny
+If there is at least one object at the relationship destination, then the source object cannot be deleted.
+For example, if you want to remove a department, you must ensure that all the employees in that department are first transferred elsewhere (or fired!) otherwise the department cannot be deleted.
+Nullify
+Set the inverse relationship for objects at the destination to null.
+For example, if you delete a department, set the department for all the current members to null. This only makes sense if the department relationship for an employee is optional, or if you ensure that you set a new department for each of the employees before the next save operation.
+Cascade
+Delete the objects at the destination of the relationship.
+For example, if you delete a department, fire all the employees in that department at the same time.
+No Action
+Do nothing to the object at the destination of the relationship.
+For example, if you delete a department, leave all the employees as they are, even if they still believe they belong to that department.
+
+
+ 
+
+一个Task属于0或至多一个Project
+ 
+
+当我们从数据库中取出Project对象时，只需要调用project.tasks，既可得到属于这个project的所有Task，而不必在使用单独的SQL语句进行查找select * from task where task.projectID == projectID
+
+TaskListViewControlerEx这个Controller,注意后有Ex哦，也同样是用来显示任务列表的，但是并没有使用NSFetchResultController或NSFetchRequest，但是直接通过project来得到tasks
+
+3.4 演示一对多对象关系中，新建对象时如何进行关联
+
+方法一
+	newTask.project = _project;
+
+方法二
+	[_project addTasksObject:newTask];
+	在指定project.tasks的属性为ordered时，系统生成的代码有个BUG，而非ordered时没有。
+	解决方案，自己实现这个方法
+	- (void)addTasksObject:(Task *)value {
+		NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.tasks];›
+		[tempSet addObject:value];
+		self.tasks = tempSet;
+	}
+3.5 CoreData.SQLDebug
+Product>Edit Scheme>
+ 
+
+3.6 生成Task和Project的代码
+在Todo.xcdatamodeld视图中选择要生成代码的Entities
+ 
+
+…>New File>CoreData(iOS)—NSManagedObject>Next 选择保存文件的位置
+ 
+
+4. 其他
+ 时间对象的使用，如何表示明天00:00这个时间，参考FetchRequestFactory中todayTaskFetchRequest方法
+任务列表中，点击单选框时，如果找到对应的任务，参考- (void) markAction:(id)sender
+
+5. 类图
+ 
+
