@@ -1,13 +1,14 @@
-本项目的目的
+#Todo Example
 
 Version 0.1
-1. 展示常见iPhone应用的基本框架
-2. 展示应用常见操作的基本实现方法，如列表显示，详情展示，添加，修改，删除等操作和对应的页面跳转
-3. 重点展示CoreData的使用
-3.1  新建，修改，删除，查找数据
+## 本项目的目的  
+1. 展示常见iPhone应用的基本框架    
+2. 展示应用常见操作的基本实现方法，如列表显示，详情展示，添加，修改，删除等操作和对应的页面跳转    
+3. 重点展示CoreData的使用     
+3.1  新建，修改，删除，查找数据    
 新建任务时，为了方便演示，默认设置Task的dueDate为当前创建的时间
 
-3.2  其中查找使用了两种方法
+3.2  其中查找使用了两种方法    
     第一种，使用NSFetchResultController,具体实现请参考FetchListViewController及其子类TaskListViewController和SelectProjectViewController的使用。
     第二种，直接使用NSFetchRequest, 具体实现请参考ProjectListViewController, 同样是显示一个NSManagedObject对象列表，Task列表和Project的列表分别使用了不同的方式，纯粹用于演示目的。显然第一种用法更高效，在数据量很大的时候，NSFetchResultController的内部实现会带来很好的性能，避免不必要的开销，同时代码量也更少。
 
