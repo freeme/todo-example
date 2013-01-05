@@ -12,6 +12,7 @@
 #import "ProjectListViewController.h"
 #import "FetchRequestFactory.h"
 #import "EditTaskViewController.h"
+#import "KPStore.h"
 
 @interface RootViewController(Private) 
 
@@ -26,11 +27,15 @@
   self = [super initWithStyle:style];
   if (self) {
     
-    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+    //KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(objectsDidChanged:)
+//                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+//                                               object:appDelegate.managedObjectContext];//设置这个参数有什么好处？大家可以想一下
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(objectsDidChanged:)
                                                  name:NSManagedObjectContextObjectsDidChangeNotification
-                                               object:appDelegate.managedObjectContext];//设置这个参数有什么好处？大家可以想一下
+                                               object:[KPStore shareStore].managedObjectContext];
   }
   return self;
 }
@@ -106,13 +111,14 @@
 
 - (BOOL) saveTask {
   if ([_inputField.text length] > 0) {
-    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-    Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
+    //KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//    Task *newTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
+    Task *newTask = (Task*)[Task createNewObject];
     newTask.title = _inputField.text;
     newTask.createDate = [NSDate date];
     newTask.dueDate = [NSDate date]; //简单实现一下
-    
-    BOOL result = [appDelegate saveContext];
+    [newTask save];
+    BOOL result = YES;//TODO: [appDelegate saveContext];
     if (result) {
       _inputField.text = @"";
       [self.tableView reloadData];
@@ -178,30 +184,30 @@
     }
   }
   
-  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+  //KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
   switch (indexPath.section) {
     case SectionTypeInbox:{
       cell.textLabel.text = @"整理箱";
-      NSInteger count = [appDelegate.managedObjectContext countForFetchRequest:_inboxFetchRequest error:NULL];
+      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_inboxFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
       break;        
     case SectionTypeTime:{
       cell.textLabel.text = @"今天";
-      NSInteger count = [appDelegate.managedObjectContext countForFetchRequest:_todayFetchRequest error:NULL];
+      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_todayFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
     }
       break;        
     case SectionTypeProject:{
       cell.textLabel.text = @"项目";
-      NSInteger count = [appDelegate.managedObjectContext countForFetchRequest:_projectFetchRequest error:NULL];
+      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_projectFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
     }
       break; 
     case SectionTypeFinish:{
       cell.textLabel.text = @"已完成";
-      NSInteger count = [appDelegate.managedObjectContext countForFetchRequest:_finishFetchRequest error:NULL];
+      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_finishFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
     }
       break;

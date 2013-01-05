@@ -19,7 +19,7 @@
 @dynamic tasks;
 
 - (void)addTasksObject:(Task *)value {
-  
+  // Plesase read the comments in [EditTaskViewController saveTask] method
 }
 
 @end

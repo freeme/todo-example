@@ -29,11 +29,14 @@
 		3F4D875714FA611800C5A2F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F4D875514FA611800C5A2F5 /* InfoPlist.strings */; };
 		3F4D875A14FA611800C5A2F5 /* TodoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4D875914FA611800C5A2F5 /* TodoTests.m */; };
 		3F4D876514FA65D300C5A2F5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F4D876414FA65D300C5A2F5 /* RootViewController.m */; };
-		3F4F200614FFAD2700055230 /* Featurelist.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F4F200514FFAD2700055230 /* Featurelist.txt */; };
 		3F90F1A71500C9480092CD60 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90F1A61500C9480092CD60 /* Task.m */; };
 		3F90F1AA1500C9490092CD60 /* Project.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F90F1A91500C9490092CD60 /* Project.m */; };
 		3FBD155514FF64FF00E14DE6 /* CheckboxActive-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD155314FF64FF00E14DE6 /* CheckboxActive-N.png */; };
 		3FBD155614FF64FF00E14DE6 /* CheckboxDone-N.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD155414FF64FF00E14DE6 /* CheckboxDone-N.png */; };
+		4EBC076F16987E6700BA555A /* KPStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC076C16987E6700BA555A /* KPStore.m */; };
+		4EBC077016987E6700BA555A /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC076E16987E6700BA555A /* NSManagedObject+ActiveRecord.m */; };
+		4EBC078716988BD100BA555A /* KPStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC076C16987E6700BA555A /* KPStore.m */; };
+		4EBC078816988BD100BA555A /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC076E16987E6700BA555A /* NSManagedObject+ActiveRecord.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,13 +84,16 @@
 		3F4D875914FA611800C5A2F5 /* TodoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoTests.m; sourceTree = "<group>"; };
 		3F4D876314FA65D300C5A2F5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		3F4D876414FA65D300C5A2F5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		3F4F200514FFAD2700055230 /* Featurelist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Featurelist.txt; sourceTree = "<group>"; };
 		3F90F1A51500C9480092CD60 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Task.h; sourceTree = "<group>"; };
 		3F90F1A61500C9480092CD60 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Task.m; sourceTree = "<group>"; };
 		3F90F1A81500C9490092CD60 /* Project.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Project.h; sourceTree = "<group>"; };
 		3F90F1A91500C9490092CD60 /* Project.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Project.m; sourceTree = "<group>"; };
 		3FBD155314FF64FF00E14DE6 /* CheckboxActive-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckboxActive-N.png"; sourceTree = "<group>"; };
 		3FBD155414FF64FF00E14DE6 /* CheckboxDone-N.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckboxDone-N.png"; sourceTree = "<group>"; };
+		4EBC076B16987E6700BA555A /* KPStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPStore.h; sourceTree = "<group>"; };
+		4EBC076C16987E6700BA555A /* KPStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPStore.m; sourceTree = "<group>"; };
+		4EBC076D16987E6700BA555A /* NSManagedObject+ActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ActiveRecord.h"; sourceTree = "<group>"; };
+		4EBC076E16987E6700BA555A /* NSManagedObject+ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ActiveRecord.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +101,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4D873514FA611800C5A2F5 /* CoreData.framework in Frameworks */,
 				3F4D872F14FA611800C5A2F5 /* UIKit.framework in Frameworks */,
 				3F4D873114FA611800C5A2F5 /* Foundation.framework in Frameworks */,
 				3F4D873314FA611800C5A2F5 /* CoreGraphics.framework in Frameworks */,
-				3F4D873514FA611800C5A2F5 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,7 +125,6 @@
 		3F4D871F14FA611700C5A2F5 = {
 			isa = PBXGroup;
 			children = (
-				3F4F200514FFAD2700055230 /* Featurelist.txt */,
 				3F4D873614FA611800C5A2F5 /* Todo */,
 				3F4D875214FA611800C5A2F5 /* TodoTests */,
 				3F4D872D14FA611800C5A2F5 /* Frameworks */,
@@ -151,6 +156,7 @@
 		3F4D873614FA611800C5A2F5 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				4EBC076A16987E5900BA555A /* KPStore */,
 				3F4F200814FFB0A100055230 /* Controllers */,
 				3F4F200714FFB09100055230 /* Objects */,
 				3F4D873F14FA611800C5A2F5 /* KPAppDelegate.h */,
@@ -227,6 +233,17 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		4EBC076A16987E5900BA555A /* KPStore */ = {
+			isa = PBXGroup;
+			children = (
+				4EBC076B16987E6700BA555A /* KPStore.h */,
+				4EBC076C16987E6700BA555A /* KPStore.m */,
+				4EBC076D16987E6700BA555A /* NSManagedObject+ActiveRecord.h */,
+				4EBC076E16987E6700BA555A /* NSManagedObject+ActiveRecord.m */,
+			);
+			name = KPStore;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -300,7 +317,6 @@
 				3F4D873B14FA611800C5A2F5 /* InfoPlist.strings in Resources */,
 				3FBD155514FF64FF00E14DE6 /* CheckboxActive-N.png in Resources */,
 				3FBD155614FF64FF00E14DE6 /* CheckboxDone-N.png in Resources */,
-				3F4F200614FFAD2700055230 /* Featurelist.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +351,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EBC078716988BD100BA555A /* KPStore.m in Sources */,
+				4EBC078816988BD100BA555A /* NSManagedObject+ActiveRecord.m in Sources */,
 				3F4D873D14FA611800C5A2F5 /* main.m in Sources */,
 				3F4D874114FA611800C5A2F5 /* KPAppDelegate.m in Sources */,
 				3F4D874414FA611800C5A2F5 /* Todo.xcdatamodeld in Sources */,
@@ -356,6 +374,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F4D875A14FA611800C5A2F5 /* TodoTests.m in Sources */,
+				4EBC076F16987E6700BA555A /* KPStore.m in Sources */,
+				4EBC077016987E6700BA555A /* NSManagedObject+ActiveRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

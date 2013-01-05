@@ -8,7 +8,7 @@
 
 #import "FetchRequestFactory.h"
 #import "KPAppDelegate.h"
-
+#import "KPStore.h"
 @interface FetchRequestFactory (private)
 + (NSFetchRequest*) defaultFetchRequest;
 + (NSArray*) defaultSortDescriptors;
@@ -42,15 +42,17 @@
 
 + (NSFetchRequest*) defaultTaskFetchRequest {
   NSFetchRequest *request = [self defaultFetchRequest];
-  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-  [request setEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext]];
+//  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//  [request setEntity:[NSEntityDescription entityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext]];
+  [request setEntity:[[KPStore shareStore] entityForName:@"Task"]];
   return request;
 }
 
 + (NSFetchRequest*) defaultProjectFetchRequest {
   NSFetchRequest *request = [self defaultFetchRequest];
-  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-  [request setEntity:[NSEntityDescription entityForName:@"Project" inManagedObjectContext:appDelegate.managedObjectContext]];
+//  KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//  [request setEntity:[NSEntityDescription entityForName:@"Project" inManagedObjectContext:appDelegate.managedObjectContext]];
+  [request setEntity:[[KPStore shareStore] entityForName:@"Project"]];
   NSMutableArray* sortDescriptors = [NSMutableArray arrayWithArray:[request sortDescriptors]];
   NSSortDescriptor *sortDescriptor0 = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
   //project 按先照名称进行排序

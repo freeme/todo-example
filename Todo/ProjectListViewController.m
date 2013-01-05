@@ -72,11 +72,12 @@
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)] autorelease];
     
-    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-    NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    
+//    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//    NSManagedObjectContext *context = appDelegate.managedObjectContext;
+//    
     NSError *error = nil;
-    NSArray *array = [context executeFetchRequest:_fetchRequest error:&error];
+//    NSArray *array = [context executeFetchRequest:_fetchRequest error:&error];
+  NSArray *array = [Project executeFetchRequest:_fetchRequest error:&error];
     _projectArray = [[NSMutableArray alloc] initWithArray:array];
     [_tableView reloadData];
 }
@@ -88,9 +89,10 @@
 }
 
 - (void) reloadList {
-    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-    NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    NSArray *array = [context executeFetchRequest:_fetchRequest error:NULL];
+//    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//    NSManagedObjectContext *context = appDelegate.managedObjectContext;
+//    NSArray *array = [context executeFetchRequest:_fetchRequest error:NULL];
+  NSArray *array = [Project executeFetchRequest:_fetchRequest error:NULL];
     if (_projectArray) {
         [_projectArray release];
     }
@@ -196,10 +198,13 @@
         // Delete the row from the data source
 
         //从DB中删除
-        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-        NSManagedObjectContext *context = appDelegate.managedObjectContext;
-        [context deleteObject:[_projectArray objectAtIndex:indexPath.row]];
-        [appDelegate saveContext];
+//        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//        NSManagedObjectContext *context = appDelegate.managedObjectContext;
+//        [context deleteObject:[_projectArray objectAtIndex:indexPath.row]];
+//        [appDelegate saveContext];
+      Project *project = (Project*)[_projectArray objectAtIndex:indexPath.row];
+      [project deleteSelf];
+      [project save];
         //从内存中删除
         [_projectArray removeObjectAtIndex:indexPath.row];
         //从表格中删除Cell

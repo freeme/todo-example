@@ -84,12 +84,13 @@
 
 - (void) saveTask {
     if ([_taskTextField.text length] >0) {
-        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+        //KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
         Task *tempTask = nil;
         if (_editingMode) {
             tempTask = _editingTask;
         } else {
-            tempTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
+//            tempTask = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:appDelegate.managedObjectContext];
+          tempTask = (Task*)[Task createNewObject];
             tempTask.project = _createdInProject;
           /*
            方法一
@@ -111,7 +112,8 @@
         tempTask.title = _taskTextField.text;
         tempTask.createDate = [NSDate date];
         tempTask.dueDate = [NSDate date];
-        [appDelegate saveContext];
+      [tempTask save];
+        //[appDelegate saveContext];
         if ([_delegate respondsToSelector:@selector(didFinishEditTask:)]) {
             [_delegate didFinishEditTask:tempTask];
         }

@@ -8,6 +8,7 @@
 
 #import "FetchListViewController.h"
 #import "KPAppDelegate.h"
+#import "KPStore.h"
 
 @implementation FetchListViewController
 @synthesize fetchRequest = _fetchRequest;
@@ -43,8 +44,8 @@
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)] autorelease];
 
-    KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-    NSManagedObjectContext *context = appDelegate.managedObjectContext;
+    //KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+    NSManagedObjectContext *context = [KPStore shareStore].managedObjectContext;
   
     _fetchController = [[NSFetchedResultsController alloc]
                         initWithFetchRequest:_fetchRequest
@@ -141,9 +142,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [_fetchController managedObjectContext];
         [context deleteObject:[_fetchController objectAtIndexPath:indexPath]];
-        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-        [appDelegate saveContext];
-    }   
+      [[KPStore shareStore] saveContext];
+//        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
+//        [appDelegate saveContext];
+    }
 }
 
 
