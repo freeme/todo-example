@@ -20,7 +20,7 @@
 + (NSManagedObject*)createNewObject;
 
 + (void) deleteObjectByID:(NSManagedObjectID*)objectID;
-
++ (void) deleteAllObjects;
 //+ (void) deleteObject:(NSManagedObject*)object;
 //+ (void) saveContext;
 - (void) deleteSelf;
