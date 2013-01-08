@@ -15,8 +15,14 @@
   return NSStringFromClass([self class]);
 }
 
++ (NSFetchRequest*)defaultFetchRequest{
+	NSFetchRequest* fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+	NSEntityDescription *entity = [[KPStore storeForObject:[self class]] entityForName:[self entityName]];
+	[fetchRequest setEntity:entity];
+	return fetchRequest;
+}
 + (NSArray *)executeFetchRequest:(NSFetchRequest *)request error:(NSError **)error {
-  return [[KPStore shareStore].managedObjectContext executeFetchRequest:request error:error];
+  return [[KPStore storeForObject:[self class]].managedObjectContext executeFetchRequest:request error:error];
 }
 
 + (NSArray*)findAllWithError:(NSError **)error {
@@ -25,7 +31,7 @@
 
 + (NSArray*)findAllSortByKey:(NSString*)sortKey ascending:(BOOL)ascending error:(NSError **)error {
   NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] init];
-  NSEntityDescription *entity = [[KPStore shareStore] entityForName:[self entityName]];
+  NSEntityDescription *entity = [[KPStore storeForObject:[self class]] entityForName:[self entityName]];
   [fetchRequest setEntity:entity];
   if (sortKey) {
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:sortKey
@@ -33,35 +39,32 @@
     [fetchRequest setSortDescriptors: [NSArray arrayWithObject:sortDescriptor]];
     [sortDescriptor release];
   }
-  NSArray *array = [[KPStore shareStore] executeFetchRequest:fetchRequest error:error];
+  NSArray *array = [[KPStore storeForObject:[self class]] executeFetchRequest:fetchRequest error:error];
   [fetchRequest release];
   return array;
 }
 
 
-+ (NSManagedObject*)createNewObject {
-  NSManagedObject* newObject = nil;
-  newObject = [[KPStore shareStore] insertNewObjectForEntityForName:[self entityName]];
++ (id)createNewObject {
+  id newObject = nil;
+	KPStore *store = [KPStore storeForObject:[self class]];
+  newObject = [store insertNewObjectForEntityForName:[self entityName]];
   return newObject;
 }
 
-
 + (void) deleteObjectByID:(NSManagedObjectID*)objectID {
-  [[KPStore shareStore] deleteObjectByID:objectID];
+  [[KPStore storeForObject:[self class]] deleteObjectByID:objectID];
 }
-//+ (void) saveContext {
-//  [[KPStore shareStore] saveContext];
-//}
-//
-//+ (void) deleteObject:(NSManagedObject*)object {
-//  [[KPStore shareStore] deleteObject:object];
-//}
 
 - (void) deleteSelf {
-  [[KPStore shareStore] deleteObject:self];
+  [[KPStore storeForObject:[self class]] deleteObject:self];
 }
 - (void) save {
-  [[KPStore shareStore] saveContext];
+  [[KPStore storeForObject:[self class]] saveContext];
+}
+
++ (void)save {
+	[[KPStore storeForObject:[self class]] saveContext];
 }
 
 @end

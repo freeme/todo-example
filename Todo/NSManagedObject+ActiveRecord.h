@@ -10,6 +10,7 @@
 
 @interface NSManagedObject (ActiveRecord)
 
++ (NSFetchRequest*)defaultFetchRequest;
 + (NSArray *)executeFetchRequest:(NSFetchRequest *)request error:(NSError **)error;
 
 //查找该类型对象的全部数据
@@ -17,13 +18,14 @@
 + (NSArray*)findAllSortByKey:(NSString*)sortKey ascending:(BOOL)ascending error:(NSError **)error;
 
 //创新一个新对象
-+ (NSManagedObject*)createNewObject;
++ (id)createNewObject;
 
 + (void) deleteObjectByID:(NSManagedObjectID*)objectID;
-+ (void) deleteAllObjects;
-//+ (void) deleteObject:(NSManagedObject*)object;
-//+ (void) saveContext;
+
 - (void) deleteSelf;
 - (void) save;
+
++ (NSString*)entityName;
++ (void)save;
 
 @end
