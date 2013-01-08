@@ -58,7 +58,7 @@
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
    // [self saveContext];
-  [[KPStore shareStore] saveContext];
+  [[KPStore sharedStore] saveContext];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -87,7 +87,7 @@
 {
     // Saves changes in the application's managed object context before the application terminates.
     //[self saveContext];
-  [[KPStore shareStore] saveContext];
+  [[KPStore sharedStore] saveContext];
 }
 
 //- (BOOL)saveContext

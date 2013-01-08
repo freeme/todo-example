@@ -45,7 +45,7 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showAddView)] autorelease];
 
     //KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
-    NSManagedObjectContext *context = [KPStore shareStore].managedObjectContext;
+    NSManagedObjectContext *context = [KPStore sharedStore].managedObjectContext;
   
     _fetchController = [[NSFetchedResultsController alloc]
                         initWithFetchRequest:_fetchRequest
@@ -142,7 +142,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSManagedObjectContext *context = [_fetchController managedObjectContext];
         [context deleteObject:[_fetchController objectAtIndexPath:indexPath]];
-      [[KPStore shareStore] saveContext];
+      [[KPStore sharedStore] saveContext];
 //        KPAppDelegate *appDelegate = [KPAppDelegate shareDelegate];
 //        [appDelegate saveContext];
     }

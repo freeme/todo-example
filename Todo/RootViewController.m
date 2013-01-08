@@ -35,7 +35,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(objectsDidChanged:)
                                                  name:NSManagedObjectContextObjectsDidChangeNotification
-                                               object:[KPStore shareStore].managedObjectContext];
+                                               object:[KPStore sharedStore].managedObjectContext];
   }
   return self;
 }
@@ -188,26 +188,26 @@
   switch (indexPath.section) {
     case SectionTypeInbox:{
       cell.textLabel.text = @"整理箱";
-      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_inboxFetchRequest error:NULL];
+      NSInteger count = [[KPStore sharedStore].managedObjectContext countForFetchRequest:_inboxFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
       break;        
     case SectionTypeTime:{
       cell.textLabel.text = @"今天";
-      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_todayFetchRequest error:NULL];
+      NSInteger count = [[KPStore sharedStore].managedObjectContext countForFetchRequest:_todayFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
     }
       break;        
     case SectionTypeProject:{
       cell.textLabel.text = @"项目";
-      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_projectFetchRequest error:NULL];
+      NSInteger count = [[KPStore sharedStore].managedObjectContext countForFetchRequest:_projectFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
     }
       break; 
     case SectionTypeFinish:{
       cell.textLabel.text = @"已完成";
-      NSInteger count = [[KPStore shareStore].managedObjectContext countForFetchRequest:_finishFetchRequest error:NULL];
+      NSInteger count = [[KPStore sharedStore].managedObjectContext countForFetchRequest:_finishFetchRequest error:NULL];
       cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",count ];
     }
       break;
