@@ -182,13 +182,13 @@ static NSMutableDictionary* __boundClassDict = nil;
   NSPersistentStore *persistenStore = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error];
   if (!persistenStore) {
     [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
-    ELog(@"Removed incompatible model version: %@", [storeURL lastPathComponent]);
+    NSLog(@"Removed incompatible model version: %@", [storeURL lastPathComponent]);
     
     persistenStore = [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error];
     if (persistenStore) {
       error = nil;
     } else {
-      FLog(@"error domain: %@, error code:%d", [error domain], [error code]);
+      NSLog(@"error domain: %@, error code:%d", [error domain], [error code]);
     }
     /*
      Replace this implementation with code to handle the error appropriately.
